@@ -10,9 +10,20 @@ module BSON
   # @since 2.0.0
   class Buffer
 
-    BINARY     = "BINARY".freeze
+    # Constant for a string with binary encoding.
+    #
+    # @since 2.0.0
+    BINARY = "BINARY".freeze
+
+    # Constant for the int 32 pack directive.
+    #
+    # @since 2.0.0
     INT32_PACK = "l".freeze
-    NULL_BYTE  = 0.chr.freeze
+
+    # Constant for a null byte (0x00).
+    #
+    # @since 2.0.0
+    NULL_BYTE = 0.chr.freeze
 
     # @!attribute bytes
     #   @return [ String ] The raw bytes in the buffer.
