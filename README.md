@@ -1,4 +1,4 @@
-BSON [![Build Status](https://secure.travis-ci.org/durran/bson.png?branch=master&.png)](http://travis-ci.org/durran/bson) [![Code Climate](https://codeclimate.com/github/durran/bson.png)](https://codeclimate.com/github/durran/bson)
+BSON [![Code Climate](https://codeclimate.com/github/durran/bson.png)](https://codeclimate.com/github/durran/bson) [![Build Status](https://secure.travis-ci.org/durran/bson.png?branch=master&.png)](http://travis-ci.org/durran/bson)
 ========
 
 The Ruby Implementation of the BSON Specification.
