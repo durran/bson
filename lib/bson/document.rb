@@ -1,4 +1,6 @@
 # encoding: utf-8
+require "bson/encoder"
+
 module BSON
 
   # This module provides behaviour for serializing and deserializing entire
