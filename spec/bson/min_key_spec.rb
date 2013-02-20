@@ -25,7 +25,7 @@ describe BSON::MinKey do
     end
 
     it "encodes the field/min key pair to the buffer" do
-      expect(encoded.bytes).to eq("\xFFkey\x00")
+      expect(encoded.bytes).to eq("#{BSON::Types::MIN_KEY}key\x00")
     end
   end
 end
