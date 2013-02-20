@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version     = ">= 1.9.3"
   s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "mongoid"
+  s.rubyforge_project         = "bson"
 
   s.files        = Dir.glob("lib/**/*") + %w(CHANGELOG.md LICENSE README.md Rakefile)
   s.require_path = 'lib'
