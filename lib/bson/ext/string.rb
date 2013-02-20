@@ -14,12 +14,12 @@ module BSON
       # outbound raw bytes string.
       #
       # @example Encode the string.
-      #   "iheartbson".__bson_encode__("title", "")
+      #   "iheartbson".__bson_encode__("title", buffer
       #
       # @param [ String ] field The name of the string's field in the document.
-      # @param [ Buffer ] buffer The buffer to serialize to.
+      # @param [ BSON::Buffer ] buffer The buffer to serialize to.
       #
-      # @return [ Buffer ] The buffer.
+      # @return [ BSON::Buffer ] The buffer.
       #
       # @since 2.0.0
       def __bson_encode__(field, buffer)
