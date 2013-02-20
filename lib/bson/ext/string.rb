@@ -29,5 +29,8 @@ module BSON
           write_string(self)
       end
     end
+
+    # Enrich the core String class with this module.
+    ::String.send(:include, String)
   end
 end

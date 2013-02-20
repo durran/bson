@@ -4,8 +4,12 @@ describe BSON::Buffer do
 
   shared_examples_for "a fluid interface" do
 
-    it "returns the buffer instance" do
+    it "returns a buffer instance" do
       expect(written).to eq(buffer)
+    end
+
+    it "returns the same buffer instance" do
+      expect(written).to eql(buffer)
     end
   end
 
