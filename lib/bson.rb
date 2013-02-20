@@ -1,5 +1,6 @@
 # encoding: utf-8
 require "bson/document"
+require "bson/types"
 require "bson/version"
 
 begin
