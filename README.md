@@ -3,6 +3,7 @@ BSON [![Build Status](https://secure.travis-ci.org/mongoid/bson.png?branch=maste
 
 The Ruby Implementation of the BSON Specification.
 
+
 Project Tracking
 ----------------
 
