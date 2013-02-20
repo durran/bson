@@ -12,7 +12,7 @@ Links
 Compatibility
 -------------
 
-BSON is tested against MRI 1.9.3+ and JRuby 1.7.0+.
+BSON is currently tested against MRI 1.9.3+ and JRuby 1.7.0+.
 
 Credits
 -------
