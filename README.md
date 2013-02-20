@@ -4,7 +4,7 @@ BSON [![Code Climate](https://codeclimate.com/github/durran/bson.png)](https://c
 The Ruby Implementation of the BSON Specification.
 
 
-Project Tracking
+Links
 ----------------
 
 * [BSON Specification](http://bsonspec.org/)
