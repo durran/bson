@@ -14,6 +14,11 @@ module BSON
     INT32_PACK = "l".freeze
     NULL_BYTE  = 0.chr.freeze
 
+    # @!attribute bytes
+    #   @return [ String ] The raw bytes in the buffer.
+    #   @since 2.0.0
+    attr_reader :bytes
+
     # Initialize the buffer.
     #
     # @example Initialize the buffer with bytes.
@@ -25,7 +30,7 @@ module BSON
     # @param [ String ] bytes Raw bytes to start with.
     #
     # @since 2.0.0
-    def initialize(bytes)
+    def initialize(bytes = nil)
       @bytes = bytes || "".force_encoding(BINARY)
     end
 
@@ -40,7 +45,7 @@ module BSON
     #
     # @since 2.0.0
     def write_byte(value)
-      bytes << value
+      bytes << value and self
     end
 
     # Write a cstring to the buffer.
