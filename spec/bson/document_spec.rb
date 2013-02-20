@@ -2,36 +2,28 @@ require "spec_helper"
 
 describe BSON::Document do
 
-  pending ".deserialize"
-
   describe ".serialize" do
 
     context "when provided a hash" do
 
       context "when the hash is all valid types" do
 
-        pending "it serializes the document"
+        let(:document) do
+          { "key" => "value" }
+        end
+
+        let(:serialized) do
+          described_class.serialize(document)
+        end
+
+        it "returns a buffer" do
+          expect(serialized).to be_a(BSON::Buffer)
+        end
+
+        it "serializes the document" do
+          expect(serialized.bytes).to eq("\x02key\x00\x06\x00\x00\x00value\x00")
+        end
       end
-
-      context "when the hash has invalid types" do
-
-        pending "it raises an error"
-      end
-
-      context "when the hash contains invalid keys" do
-
-        pending "it raises an error"
-      end
-
-      context "when the hash has invalid values" do
-
-        pending "it raises an error"
-      end
-    end
-
-    context "when not providing a hash" do
-
-      pending "it raises an error"
     end
   end
 end

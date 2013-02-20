@@ -31,6 +31,8 @@ module BSON
     end
 
     # Enrich the core String class with this module.
+    #
+    # @since 2.0.0
     ::String.send(:include, String)
   end
 end

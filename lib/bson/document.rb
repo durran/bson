@@ -15,10 +15,6 @@ module BSON
   module Document
     extend self
 
-    def deserialize(inbound)
-
-    end
-
     # Serialize a document into a raw string of bytes.
     #
     # @example Serialize the document into it's raw bytes.
@@ -31,10 +27,10 @@ module BSON
     #
     # @since 2.0.0
     def serialize(document, buffer = Buffer.new)
-      # document.each do |field, value|
-        # value.__bson_encode__(field, buffer)
-      # end
-      # buffer
+      document.each do |field, value|
+        value.__bson_encode__(field, buffer)
+      end
+      buffer
     end
   end
 end
