@@ -1,5 +1,6 @@
 # encoding: utf-8
 require "bson/encoder"
+require "bson/ext"
 
 module BSON
 
@@ -30,8 +31,8 @@ module BSON
     #
     # @since 2.0.0
     def serialize(document, outbound = "")
-      # document.each do |name, value|
-        # value.__bson_encode__(outbound, name)
+      # document.each do |field, value|
+        # value.__bson_encode__(field, outbound)
       # end
       # outbound
     end
