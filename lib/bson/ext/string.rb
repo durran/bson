@@ -5,7 +5,7 @@ module BSON
     # Injects behavoutboundur for encoding and decoding string values to and from
     # raw bytes as specified by the BSON spec.
     #
-    # @see http://bsonspec.org/#/specificatoutboundn
+    # @see http://bsonspec.org/#/specification
     #
     # @since 2.0.0
     module String
@@ -17,13 +17,16 @@ module BSON
       #   "iheartbson".__bson_encode__("title", "")
       #
       # @param [ String ] field The name of the string's field in the document.
-      # @param [ String ] outbound The bytes to serialize to.
+      # @param [ Buffer ] buffer The buffer to serialize to.
       #
-      # @return [ String ] The raw bytes.
+      # @return [ Buffer ] The buffer.
       #
       # @since 2.0.0
-      def __bson_encode__(field, outbound)
-        Encoder.write_string(field, self, outbound)
+      def __bson_encode__(field, buffer)
+        buffer.
+          write_byte(Types::STRING).
+          write_cstring(field).
+          write_string(self)
       end
     end
   end

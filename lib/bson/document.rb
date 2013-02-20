@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "bson/encoder"
+require "bson/buffer"
 require "bson/ext"
 
 module BSON
@@ -25,16 +25,16 @@ module BSON
     #   BSON::Document.serialize({ :name => "Sid Vicious" })
     #
     # @param [ Hash ] document The document to serialize.
-    # @param [ String ] outbound The string to write to (optional).
+    # @param [ BSON::Buffer ] buffer The buffer to write to. (optional)
     #
-    # @return [ String ] The raw encoded bytes.
+    # @return [ BSON::Buffer ] The buffer.
     #
     # @since 2.0.0
-    def serialize(document, outbound = "")
+    def serialize(document, buffer = Buffer.new)
       # document.each do |field, value|
-        # value.__bson_encode__(field, outbound)
+        # value.__bson_encode__(field, buffer)
       # end
-      # outbound
+      # buffer
     end
   end
 end
