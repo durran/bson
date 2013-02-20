@@ -1,4 +1,5 @@
 # encoding: utf-8
+require "bson/max_key"
 require "bson/min_key"
 
 module BSON
@@ -17,6 +18,11 @@ module BSON
     # @since 2.0.0
     STRING = 2.chr.freeze
 
+    # A $maxKey is type 0x7F in the BSON spec.
+    #
+    # @since 2.0.0
+    MAX_KEY = 127.chr.freeze
+
     # A $minKey is type 0xFF in the BSON spec.
     #
     # @since 2.0.0
@@ -27,6 +33,7 @@ module BSON
     # @since 2.0.0
     MAPPINGS = {
       STRING  => String,
+      MAX_KEY => MaxKey,
       MIN_KEY => MinKey
     }
 
