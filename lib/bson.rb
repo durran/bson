@@ -21,7 +21,17 @@ end
 #
 # @since 2.0.0
 begin
-  jruby? ? require("bson/native.jar") : require("bson/native")
+  if jruby?
+    # Java extenstions would be packaged in a native.jar with a Java Buffer
+    # implementation.
+    require "bson/native.jar"
+  else
+    # C extensions would be packed in a bundle called native with a C buffer
+    # implementation.
+    require "bson/native"
+  end
 rescue LoadError
+  # The pure Ruby Buffer is in lib.
+  require "bson/buffer"
   $stderr.puts("BSON is using the pure Ruby buffer implementation.")
 end
