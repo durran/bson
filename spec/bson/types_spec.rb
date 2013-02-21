@@ -25,6 +25,13 @@ describe BSON::Types do
     end
   end
 
+  describe "::MAX_KEY" do
+
+    it "returns 0x7F" do
+      expect(BSON::Types::MAX_KEY).to eq(127.chr)
+    end
+  end
+
   describe "::MIN_KEY" do
 
     it "returns 0xFF" do
