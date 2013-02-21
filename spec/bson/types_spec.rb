@@ -45,4 +45,11 @@ describe BSON::Types do
       expect(BSON::Types::STRING).to eq(2.chr)
     end
   end
+
+  describe "::TIMESTAMP" do
+
+    it "returns 0x11" do
+      expect(BSON::Types::TIMESTAMP).to eq(17.chr)
+    end
+  end
 end

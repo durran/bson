@@ -20,6 +20,11 @@ module BSON
     # @since 2.0.0
     INT32_PACK = "l".freeze
 
+    # Constant for the timestamp pack directive.
+    #
+    # @since 2.0.0
+    TIMESTAMP_PACK = "l2".freeze
+
     # Constant for a null byte (0x00).
     #
     # @since 2.0.0
@@ -112,6 +117,24 @@ module BSON
       write_int32(value.bytesize + 1)
       bytes << value
       bytes << NULL_BYTE and self
+    end
+
+    # Write a timestamp to the buffer.
+    #
+    # @example Write a timestamp to the buffer.
+    #   buffer.write_timestamp(timestamp)
+    #
+    # @note The specification is: timestamp ::= "\x11" e_name int64
+    #
+    # @param [ BSON::Timestamp ] value The timestamp value.
+    #
+    # @return [ BSON::Buffer ] The buffer instance.
+    #
+    # @see http://bsonspec.org/#/specification
+    #
+    # @since 2.0.0
+    def write_timestamp(value)
+      bytes << [ value.increment, value.seconds ].pack(TIMESTAMP_PACK) and self
     end
   end
 end

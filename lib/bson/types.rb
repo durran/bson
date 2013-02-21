@@ -1,6 +1,7 @@
 # encoding: utf-8
 require "bson/max_key"
 require "bson/min_key"
+require "bson/timestamp"
 
 module BSON
 
@@ -18,6 +19,11 @@ module BSON
     # @since 2.0.0
     STRING = 2.chr.freeze
 
+    # A timestamp is type 0x11 in the BSON spec.
+    #
+    # @since 2.0.0
+    TIMESTAMP = 17.chr.freeze
+
     # A $maxKey is type 0x7F in the BSON spec.
     #
     # @since 2.0.0
@@ -32,9 +38,10 @@ module BSON
     #
     # @since 2.0.0
     MAPPINGS = {
-      STRING  => String,
-      MAX_KEY => MaxKey,
-      MIN_KEY => MinKey
+      STRING    => String,
+      TIMESTAMP => Timestamp,
+      MAX_KEY   => MaxKey,
+      MIN_KEY   => MinKey
     }
 
     # Get the class for the single byte identifier for the type in the BSON
