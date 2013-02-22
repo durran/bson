@@ -1,4 +1,5 @@
 # encoding: utf-8
+require "bson/buffer"
 require "bson/document"
 require "bson/types"
 require "bson/version"
@@ -31,7 +32,5 @@ begin
     require "bson/native"
   end
 rescue LoadError
-  # The pure Ruby Buffer is in lib.
-  require "bson/buffer"
   $stderr.puts("BSON is using the pure Ruby buffer implementation.")
 end

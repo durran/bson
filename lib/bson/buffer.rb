@@ -96,7 +96,9 @@ module BSON
     #
     # @since 2.0.0
     def write_int32(value)
-      bytes << [ value ].pack(INT32_PACK) and self
+      bytes << (value & 255) << ((value >> 8) & 255) << ((value >> 16) & 255) << (( value >> 24) & 255)
+      self
+      # bytes << [ value ].pack(INT32_PACK) and self
     end
 
     # Write a string to the buffer.
