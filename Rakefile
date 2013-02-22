@@ -71,7 +71,5 @@ namespace :benchmark do
   end
 end
 
-task :default => [ :compile, :spec, :clean, :clean_spec ]
-
 task :default => :spec
 task :bench => [ "benchmark:ruby", "benchmark:c" ]
