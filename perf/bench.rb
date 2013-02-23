@@ -3,32 +3,29 @@ require "benchmark"
 def benchmark!
   Benchmark.bm do |bench|
 
-    bench.report("MaxKey#to_bson ----->") do
+    bench.report("BSON::Buffer#write_cstring -->") do
       1_000_000.times do |n|
-        BSON::MaxKey.new.to_bson
+        BSON::Buffer.new.write_cstring("field")
       end
     end
+
     GC.start
 
-    bench.report("MinKey#to_bson ----->") do
+    bench.report("BSON::Buffer#write_int32 ---->") do
       1_000_000.times do |n|
-        BSON::MinKey.new.to_bson
+        BSON::Buffer.new.write_int32(100)
       end
     end
+
     GC.start
 
-    bench.report("String#to_bson ----->") do
+    bench.report("BSON::Buffer#write_string --->") do
       1_000_000.times do |n|
-        "testing".to_bson
+        BSON::Buffer.new.write_string("testing")
       end
     end
+
     GC.start
 
-    bench.report("Timestamp#to_bson -->") do
-      1_000_000.times do |n|
-        BSON::Timestamp.new(10, 10).to_bson
-      end
-    end
-    GC.start
   end
 end

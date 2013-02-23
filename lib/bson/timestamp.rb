@@ -46,8 +46,7 @@ module BSON
     #
     # @since 2.0.0
     def initialize(increment, seconds)
-      @increment = increment
-      @seconds = seconds
+      @increment, @seconds = increment, seconds
     end
 
     # Get the timestamp as its encoded raw BSON bytes.
