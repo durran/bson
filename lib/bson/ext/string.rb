@@ -2,7 +2,7 @@
 module BSON
   module Ext
 
-    # Injects behavoutboundur for encoding and decoding string values to and from
+    # Injects behaviour for encoding and decoding string values to and from
     # raw bytes as specified by the BSON spec.
     #
     # @see http://bsonspec.org/#/specification
