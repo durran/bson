@@ -9,6 +9,11 @@ module BSON
   # @since 2.0.0
   class MaxKey
 
+    # A $maxKey is type 0x7F in the BSON spec.
+    #
+    # @since 2.0.0
+    BSON_TYPE = 127.chr.freeze
+
     # Encode the $maxKey to its raw BSON bytes and append it to the provided
     # outbound raw bytes string.
     #
@@ -22,7 +27,7 @@ module BSON
     #
     # @since 2.0.0
     def __bson_encode__(field, buffer)
-      buffer.write_byte(Types::MAX_KEY).write_cstring(field)
+      buffer.write_byte(BSON_TYPE).write_cstring(field)
     end
   end
 end

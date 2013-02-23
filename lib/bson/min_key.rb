@@ -9,6 +9,11 @@ module BSON
   # @since 2.0.0
   class MinKey
 
+    # A $minKey is type 0xFF in the BSON spec.
+    #
+    # @since 2.0.0
+    BSON_TYPE = 255.chr.freeze
+
     # Encode the $minKey to its raw BSON bytes and append it to the provided
     # outbound raw bytes string.
     #
@@ -22,7 +27,7 @@ module BSON
     #
     # @since 2.0.0
     def __bson_encode__(field, buffer)
-      buffer.write_byte(Types::MIN_KEY).write_cstring(field)
+      buffer.write_byte(BSON_TYPE).write_cstring(field)
     end
   end
 end

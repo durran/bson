@@ -2,6 +2,13 @@ require "spec_helper"
 
 describe BSON::Timestamp do
 
+  describe "::BSON_TYPE" do
+
+    it "returns 0x11" do
+      expect(BSON::Timestamp::BSON_TYPE).to eq(17.chr)
+    end
+  end
+
   describe "#__bson_encode__" do
 
     let(:timestamp) do
@@ -30,7 +37,7 @@ describe BSON::Timestamp do
 
     it "encodes the field/timestamp pair to the buffer" do
       expect(encoded.bytes).to eq(
-        "#{BSON::Types::TIMESTAMP}key\x00#{packed_timestamp}"
+        "#{BSON::Timestamp::BSON_TYPE}key\x00#{packed_timestamp}"
       )
     end
   end

@@ -2,6 +2,13 @@ require "spec_helper"
 
 describe BSON::MinKey do
 
+  describe "::BSON_TYPE" do
+
+    it "returns 0xFF" do
+      expect(BSON::MinKey::BSON_TYPE).to eq(255.chr)
+    end
+  end
+
   describe "#__bson_encode__" do
 
     let(:min_key) do
@@ -25,7 +32,7 @@ describe BSON::MinKey do
     end
 
     it "encodes the field/min key pair to the buffer" do
-      expect(encoded.bytes).to eq("#{BSON::Types::MIN_KEY}key\x00")
+      expect(encoded.bytes).to eq("#{BSON::MinKey::BSON_TYPE}key\x00")
     end
   end
 end

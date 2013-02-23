@@ -45,11 +45,11 @@ describe BSON::Buffer do
     end
 
     let!(:written) do
-      buffer.write_byte(BSON::Types::STRING)
+      buffer.write_byte(String::BSON_TYPE)
     end
 
     it "writes the byte to the buffer" do
-      expect(buffer.bytes).to eq(BSON::Types::STRING)
+      expect(buffer.bytes).to eq(String::BSON_TYPE)
     end
 
     it_behaves_like "a fluid interface"

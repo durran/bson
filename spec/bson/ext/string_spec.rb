@@ -2,6 +2,13 @@ require "spec_helper"
 
 describe BSON::Ext::String do
 
+  describe "::BSON_TYPE" do
+
+    it "returns 0x02" do
+      expect(String::BSON_TYPE).to eq(2.chr)
+    end
+  end
+
   describe "#__bson_encode__" do
 
     let(:string) do

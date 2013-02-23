@@ -8,6 +8,11 @@ module BSON
   # @since 2.0.0
   class Timestamp
 
+    # A timestamp is type 0x11 in the BSON spec.
+    #
+    # @since 2.0.0
+    BSON_TYPE = 17.chr.freeze
+
     # @!attribute increment
     #   @return [ Integer ] The incrementing value.
     #   @since 2.0.0
@@ -31,7 +36,7 @@ module BSON
     # @since 2.0.0
     def __bson_encode__(field, buffer)
       buffer.
-        write_byte(Types::TIMESTAMP).
+        write_byte(BSON_TYPE).
         write_cstring(field).
         write_timestamp(self)
     end

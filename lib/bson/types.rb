@@ -14,34 +14,14 @@ module BSON
   module Types
     extend self
 
-    # A string is type 0x02 in the BSON spec.
-    #
-    # @since 2.0.0
-    STRING = 2.chr.freeze
-
-    # A timestamp is type 0x11 in the BSON spec.
-    #
-    # @since 2.0.0
-    TIMESTAMP = 17.chr.freeze
-
-    # A $maxKey is type 0x7F in the BSON spec.
-    #
-    # @since 2.0.0
-    MAX_KEY = 127.chr.freeze
-
-    # A $minKey is type 0xFF in the BSON spec.
-    #
-    # @since 2.0.0
-    MIN_KEY = 255.chr.freeze
-
     # A Mapping of all the BSON types to their corresponding Ruby classes.
     #
     # @since 2.0.0
     MAPPINGS = {
-      STRING    => String,
-      TIMESTAMP => Timestamp,
-      MAX_KEY   => MaxKey,
-      MIN_KEY   => MinKey
+      MaxKey::BSON_TYPE    => MaxKey,
+      MinKey::BSON_TYPE    => MinKey,
+      String::BSON_TYPE    => String,
+      Timestamp::BSON_TYPE => Timestamp
     }
 
     # Get the class for the single byte identifier for the type in the BSON

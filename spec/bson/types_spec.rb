@@ -7,7 +7,7 @@ describe BSON::Types do
     context "when the type has a correspoding class" do
 
       let(:klass) do
-        described_class.get(BSON::Types::MIN_KEY)
+        described_class.get(BSON::MinKey::BSON_TYPE)
       end
 
       it "returns the class" do
@@ -22,34 +22,6 @@ describe BSON::Types do
           described_class.get("test")
         }.to raise_error(KeyError)
       end
-    end
-  end
-
-  describe "::MAX_KEY" do
-
-    it "returns 0x7F" do
-      expect(BSON::Types::MAX_KEY).to eq(127.chr)
-    end
-  end
-
-  describe "::MIN_KEY" do
-
-    it "returns 0xFF" do
-      expect(BSON::Types::MIN_KEY).to eq(255.chr)
-    end
-  end
-
-  describe "::STRING" do
-
-    it "returns 0x02" do
-      expect(BSON::Types::STRING).to eq(2.chr)
-    end
-  end
-
-  describe "::TIMESTAMP" do
-
-    it "returns 0x11" do
-      expect(BSON::Types::TIMESTAMP).to eq(17.chr)
     end
   end
 end

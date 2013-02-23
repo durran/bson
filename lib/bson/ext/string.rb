@@ -10,6 +10,11 @@ module BSON
     # @since 2.0.0
     module String
 
+      # A string is type 0x02 in the BSON spec.
+      #
+      # @since 2.0.0
+      BSON_TYPE = 2.chr.freeze
+
       # Encode this string to its raw BSON bytes and append it to the provided
       # outbound raw bytes string.
       #
@@ -24,7 +29,7 @@ module BSON
       # @since 2.0.0
       def __bson_encode__(field, buffer)
         buffer.
-          write_byte(Types::STRING).
+          write_byte(BSON_TYPE).
           write_cstring(field).
           write_string(self)
       end

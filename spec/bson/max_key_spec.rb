@@ -2,6 +2,13 @@ require "spec_helper"
 
 describe BSON::MaxKey do
 
+  describe "::BSON_TYPE" do
+
+    it "returns 0x7F" do
+      expect(BSON::MaxKey::BSON_TYPE).to eq(127.chr)
+    end
+  end
+
   describe "#__bson_encode__" do
 
     let(:max_key) do
@@ -25,7 +32,7 @@ describe BSON::MaxKey do
     end
 
     it "encodes the field/max key pair to the buffer" do
-      expect(encoded.bytes).to eq("#{BSON::Types::MAX_KEY}key\x00")
+      expect(encoded.bytes).to eq("#{BSON::MaxKey::BSON_TYPE}key\x00")
     end
   end
 end
