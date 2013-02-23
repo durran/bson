@@ -21,9 +21,8 @@ module BSON
     #   BSON::Document.serialize({ :name => "Sid Vicious" })
     #
     # @param [ Hash ] document The document to serialize.
-    # @param [ BSON::Buffer ] buffer The buffer to write to. (optional)
     #
-    # @return [ BSON::Buffer ] The buffer.
+    # @return [ String ] The raw bytes.
     #
     # @since 2.0.0
     def serialize(document)
