@@ -40,7 +40,7 @@ module BSON
       #
       # @since 2.0.0
       def to_bson
-        [ bytesize + 1 ].pack(INT32_PACK) + to_bson_cstring
+        (bytesize + 1).to_bson + to_bson_cstring
       end
 
       # Get the string as an encoded C string.

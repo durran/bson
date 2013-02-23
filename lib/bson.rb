@@ -39,23 +39,13 @@ end
 # @since 0.0.0
 module BSON
 
-  # Constant for the int 32 pack directive.
-  #
-  # @since 2.0.0
-  INT32_PACK = "l".freeze
-
   # Constant for bson types that don't actually serialize a value.
   #
   # @since 2.0.0
-  NO_VALUE = "".freeze
+  NO_VALUE = "".freeze unless defined?(NO_VALUE)
 
   # Constant for a null byte (0x00).
   #
   # @since 2.0.0
-  NULL_BYTE = 0.chr.freeze
-
-  # Constant for the timestamp pack directive.
-  #
-  # @since 2.0.0
-  TIMESTAMP_PACK = "l2".freeze
+  NULL_BYTE = 0.chr.freeze unless defined?(NULL_BYTE)
 end

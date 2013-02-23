@@ -1,50 +1,19 @@
 #include <ruby.h>
 #include <stdint.h>
 
-static char null_byte = 0;
-
-static VALUE rb_buffer_bytes(VALUE buffer)
+static VALUE bson_integer_to_bson(VALUE self)
 {
-  return rb_iv_get(buffer, "@bytes");
-}
-
-static VALUE bson_buffer_write_cstring(VALUE buffer, VALUE value)
-{
-  VALUE bytes = rb_buffer_bytes(buffer);
-  rb_str_cat2(bytes, RSTRING_PTR(value));
-  rb_str_cat(bytes, &null_byte, 1);
-  return buffer;
-}
-
-static VALUE bson_buffer_write_int32(VALUE buffer, VALUE value)
-{
-  const int32_t v = NUM2INT(value);
+  const int32_t v = NUM2INT(self);
   const char bytes[4] = { v & 255, (v >> 8) & 255, (v >> 16) & 255, (v >> 24) & 255 };
-  rb_str_cat(rb_buffer_bytes(buffer), bytes, 4);
-  return buffer;
-}
-
-static VALUE bson_buffer_write_string(VALUE buffer, VALUE value)
-{
-  const int length = RSTRING_LEN(value) + 1;
-  VALUE bytes = rb_buffer_bytes(buffer);
-  bson_buffer_write_int32(buffer, INT2NUM(length));
-  rb_str_cat(bytes, RSTRING_PTR(value), length);
-  rb_str_cat(bytes, &null_byte, 1);
-  return buffer;
+  return rb_str_new(bytes, 4);
 }
 
 void Init_native()
 {
   VALUE bson = rb_const_get(rb_cObject, rb_intern("BSON"));
-  VALUE buffer = rb_const_get(bson, rb_intern("Buffer"));
+  VALUE ext = rb_const_get(bson, rb_intern("Ext"));
 
-  rb_remove_method(buffer, "write_cstring");
-  rb_define_method(buffer, "write_cstring", bson_buffer_write_cstring, 1);
-
-  rb_remove_method(buffer, "write_int32");
-  rb_define_method(buffer, "write_int32", bson_buffer_write_int32, 1);
-
-  rb_remove_method(buffer, "write_string");
-  rb_define_method(buffer, "write_string", bson_buffer_write_string, 1);
+  VALUE integer = rb_const_get(ext, rb_intern("Integer"));
+  rb_remove_method(integer, "to_bson");
+  rb_define_method(integer, "to_bson", bson_integer_to_bson, 0);
 }

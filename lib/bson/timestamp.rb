@@ -13,6 +13,11 @@ module BSON
     # @since 2.0.0
     BSON_TYPE = 17.chr.freeze
 
+    # Constant for the timestamp pack directive.
+    #
+    # @since 2.0.0
+    TIMESTAMP_PACK = "l2".freeze
+
     # @!attribute increment
     #   @return [ Integer ] The incrementing value.
     #   @since 2.0.0
