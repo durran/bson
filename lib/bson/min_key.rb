@@ -14,20 +14,31 @@ module BSON
     # @since 2.0.0
     BSON_TYPE = 255.chr.freeze
 
-    # Encode the $minKey to its raw BSON bytes and append it to the provided
-    # outbound raw bytes string.
+    # Get the BSON single byte type for a min key.
     #
-    # @example Encode the $minKey.
-    #   min_key.__bson_encode__("key", buffer)
+    # @example Get the bson type.
+    #   min_key.bson_type
     #
-    # @param [ String ] field The name of the string's field in the document.
-    # @param [ BSON::Buffer ] buffer The buffer to serialize to.
+    # @return [ String ] 0xFF.
     #
-    # @return [ BSON::Buffer ] The buffer.
+    # @see http://bsonspec.org/#/specification
     #
     # @since 2.0.0
-    def __bson_encode__(field, buffer)
-      buffer.write_byte(BSON_TYPE).write_cstring(field)
+    def bson_type
+      BSON_TYPE
+    end
+
+    # Encode the min key - has no value since it only needs the type and field
+    # name when being encoded.
+    #
+    # @example Encode the min key.
+    #   min_key.to_bson
+    #
+    # @return [ String ] An empty string.
+    #
+    # @since 2.0.0
+    def to_bson
+      NO_VALUE
     end
   end
 end

@@ -1,4 +1,5 @@
 # encoding: utf-8
+require "bson/element"
 require "bson/ext"
 
 module BSON
@@ -25,9 +26,10 @@ module BSON
     # @return [ BSON::Buffer ] The buffer.
     #
     # @since 2.0.0
-    def serialize(document, buffer = Buffer.new)
+    def serialize(document)
+      buffer = "".force_encoding("BINARY")
       document.each do |field, value|
-        value.__bson_encode__(field, buffer)
+        buffer << Element.new(field, value).to_bson
       end
       buffer
     end

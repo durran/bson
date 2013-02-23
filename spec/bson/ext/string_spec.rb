@@ -9,30 +9,40 @@ describe BSON::Ext::String do
     end
   end
 
-  describe "#__bson_encode__" do
+  describe "#bson_type" do
+
+    it "returns the BSON_TYPE" do
+      expect("test".bson_type).to eq(String::BSON_TYPE)
+    end
+  end
+
+  describe "#to_bson" do
 
     let(:string) do
       "test"
     end
 
-    let(:buffer) do
-      BSON::Buffer.new
+    let(:encoded) do
+      string.to_bson
+    end
+
+    it "returns the encoded string" do
+      expect(encoded).to eq("\x05\x00\x00\x00test\x00")
+    end
+  end
+
+  describe "#to_bson_cstring" do
+
+    let(:string) do
+      "test"
     end
 
     let(:encoded) do
-      string.__bson_encode__("key", buffer)
+      string.to_bson_cstring
     end
 
-    it "returns the buffer" do
-      expect(encoded).to eq(buffer)
-    end
-
-    it "returns the same buffer instance" do
-      expect(encoded).to eql(buffer)
-    end
-
-    it "encodes the field/string pair to the buffer" do
-      expect(encoded.bytes).to eq("\x02key\x00\x05\x00\x00\x00test\x00")
+    it "returns the encoded string" do
+      expect(encoded).to eq("test\x00")
     end
   end
 end

@@ -1,38 +1,35 @@
 require "spec_helper"
 
+require "spec_helper"
+
 describe BSON::MaxKey do
 
   describe "::BSON_TYPE" do
 
-    it "returns 0x7F" do
+    it "returns 0xFF" do
       expect(BSON::MaxKey::BSON_TYPE).to eq(127.chr)
     end
   end
 
-  describe "#__bson_encode__" do
+  describe "#bson_type" do
 
     let(:max_key) do
       described_class.new
     end
 
-    let(:buffer) do
-      BSON::Buffer.new
+    it "returns 0xFF" do
+      expect(max_key.bson_type).to eq(BSON::MaxKey::BSON_TYPE)
+    end
+  end
+
+  describe "#to_bson" do
+
+    let(:max_key) do
+      described_class.new
     end
 
-    let(:encoded) do
-      max_key.__bson_encode__("key", buffer)
-    end
-
-    it "returns the buffer" do
-      expect(encoded).to eq(buffer)
-    end
-
-    it "returns the same buffer instance" do
-      expect(encoded).to eql(buffer)
-    end
-
-    it "encodes the field/max key pair to the buffer" do
-      expect(encoded.bytes).to eq("#{BSON::MaxKey::BSON_TYPE}key\x00")
+    it "returns an empty string" do
+      expect(max_key.to_bson).to be_empty
     end
   end
 end

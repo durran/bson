@@ -9,36 +9,29 @@ describe BSON::Timestamp do
     end
   end
 
-  describe "#__bson_encode__" do
+  describe "#bson_type" do
 
     let(:timestamp) do
       described_class.new(1, 10)
     end
 
-    let(:buffer) do
-      BSON::Buffer.new
+    it "returns the bson type" do
+      expect(timestamp.bson_type).to eq(BSON::Timestamp::BSON_TYPE)
     end
+  end
 
-    let(:encoded) do
-      timestamp.__bson_encode__("key", buffer)
+  describe "#to_bson" do
+
+    let(:timestamp) do
+      described_class.new(1, 10)
     end
 
     let(:packed_timestamp) do
       [ 1, 10 ].pack("l2")
     end
 
-    it "returns the buffer" do
-      expect(encoded).to eq(buffer)
-    end
-
-    it "returns the same buffer instance" do
-      expect(encoded).to eql(buffer)
-    end
-
-    it "encodes the field/timestamp pair to the buffer" do
-      expect(encoded.bytes).to eq(
-        "#{BSON::Timestamp::BSON_TYPE}key\x00#{packed_timestamp}"
-      )
+    it "returns the encoded timestamp" do
+      expect(timestamp.to_bson).to eq(packed_timestamp)
     end
   end
 end

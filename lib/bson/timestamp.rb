@@ -22,23 +22,18 @@ module BSON
     #   @since 2.0.0
     attr_reader :increment, :seconds
 
-    # Encode the timestamp to its raw BSON bytes and append it to the provided
-    # outbound raw bytes string.
+    # Get the BSON type for the timestamp as a single byte.
     #
-    # @example Encode the timestamp
-    #   timestamp.__bson_encode__("key", buffer)
+    # @example Get the single byte BSON type.
+    #   timestamp.bson_type
     #
-    # @param [ String ] field The name of the string's field in the document.
-    # @param [ BSON::Buffer ] buffer The buffer to serialize to.
+    # @return [ String ] The single byte type.
     #
-    # @return [ BSON::Buffer ] The buffer.
+    # @see http://bsonspec.org/#/specification
     #
     # @since 2.0.0
-    def __bson_encode__(field, buffer)
-      buffer.
-        write_byte(BSON_TYPE).
-        write_cstring(field).
-        write_timestamp(self)
+    def bson_type
+      BSON_TYPE
     end
 
     # Instantiate the new timestamp.
@@ -52,6 +47,20 @@ module BSON
     # @since 2.0.0
     def initialize(increment, seconds)
       @increment, @seconds = increment, seconds
+    end
+
+    # Get the timestamp as its encoded raw BSON bytes.
+    #
+    # @example Get the timestamp as BSON.
+    #   timestamp.to_bson
+    #
+    # @return [ String ] The raw BSON bytes.
+    #
+    # @see http://bsonspec.org/#/specification
+    #
+    # @since 2.0.0
+    def to_bson
+      [ increment, seconds ].pack(TIMESTAMP_PACK)
     end
   end
 end

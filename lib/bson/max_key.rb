@@ -14,20 +14,31 @@ module BSON
     # @since 2.0.0
     BSON_TYPE = 127.chr.freeze
 
-    # Encode the $maxKey to its raw BSON bytes and append it to the provided
-    # outbound raw bytes string.
+    # Get the BSON single byte type for a max key.
     #
-    # @example Encode the $maxKey.
-    #   max_key.__bson_encode__("key", buffer)
+    # @example Get the bson type.
+    #   max_key.bson_type
     #
-    # @param [ String ] field The name of the string's field in the document.
-    # @param [ BSON::Buffer ] buffer The buffer to serialize to.
+    # @return [ String ] 0x7F.
     #
-    # @return [ BSON::Buffer ] The buffer.
+    # @see http://bsonspec.org/#/specification
     #
     # @since 2.0.0
-    def __bson_encode__(field, buffer)
-      buffer.write_byte(BSON_TYPE).write_cstring(field)
+    def bson_type
+      BSON_TYPE
+    end
+
+    # Encode the max key - has no value since it only needs the type and field
+    # name when being encoded.
+    #
+    # @example Encode the max key.
+    #   max_key.to_bson
+    #
+    # @return [ String ] An empty string.
+    #
+    # @since 2.0.0
+    def to_bson
+      NO_VALUE
     end
   end
 end

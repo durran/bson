@@ -16,12 +16,8 @@ describe BSON::Document do
           described_class.serialize(document)
         end
 
-        it "returns a buffer" do
-          expect(serialized).to be_a(BSON::Buffer)
-        end
-
         it "serializes the document" do
-          expect(serialized.bytes).to eq("\x02key\x00\x06\x00\x00\x00value\x00")
+          expect(serialized).to eq("\x02key\x00\x06\x00\x00\x00value\x00")
         end
       end
     end

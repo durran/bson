@@ -15,23 +15,46 @@ module BSON
       # @since 2.0.0
       BSON_TYPE = 2.chr.freeze
 
-      # Encode this string to its raw BSON bytes and append it to the provided
-      # outbound raw bytes string.
+      # Get the BSON single byte type for a string.
       #
-      # @example Encode the string.
-      #   "iheartbson".__bson_encode__("title", buffer)
+      # @example Get the bson type.
+      #   "test".bson_type
       #
-      # @param [ String ] field The name of the string's field in the document.
-      # @param [ BSON::Buffer ] buffer The buffer to serialize to.
+      # @return [ String ] 0x02.
       #
-      # @return [ BSON::Buffer ] The buffer.
+      # @see http://bsonspec.org/#/specification
       #
       # @since 2.0.0
-      def __bson_encode__(field, buffer)
-        buffer.
-          write_byte(BSON_TYPE).
-          write_cstring(field).
-          write_string(self)
+      def bson_type
+        BSON_TYPE
+      end
+
+      # Get the string as encoded BSON.
+      #
+      # @example Get the string as encoded BSON.
+      #   "test".to_bson
+      #
+      # @return [ String ] The encoded string.
+      #
+      # @see http://bsonspec.org/#/specification
+      #
+      # @since 2.0.0
+      def to_bson
+        [ bytesize + 1 ].pack(INT32_PACK) + to_bson_cstring
+      end
+
+      # Get the string as an encoded C string.
+      #
+      # @example Get the string as an encoded C string.
+      #   "test".to_bson_cstring
+      #
+      # @return [ String ] The encoded string.
+      #
+      # @see http://bsonspec.org/#/specification
+      #
+      # @since 2.0.0
+      def to_bson_cstring
+        self + NULL_BYTE
       end
     end
 

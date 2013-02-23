@@ -9,30 +9,25 @@ describe BSON::MinKey do
     end
   end
 
-  describe "#__bson_encode__" do
+  describe "#bson_type" do
 
     let(:min_key) do
       described_class.new
     end
 
-    let(:buffer) do
-      BSON::Buffer.new
+    it "returns 0xFF" do
+      expect(min_key.bson_type).to eq(BSON::MinKey::BSON_TYPE)
+    end
+  end
+
+  describe "#to_bson" do
+
+    let(:min_key) do
+      described_class.new
     end
 
-    let(:encoded) do
-      min_key.__bson_encode__("key", buffer)
-    end
-
-    it "returns the buffer" do
-      expect(encoded).to eq(buffer)
-    end
-
-    it "returns the same buffer instance" do
-      expect(encoded).to eql(buffer)
-    end
-
-    it "encodes the field/min key pair to the buffer" do
-      expect(encoded.bytes).to eq("#{BSON::MinKey::BSON_TYPE}key\x00")
+    it "returns an empty string" do
+      expect(min_key.to_bson).to be_empty
     end
   end
 end
