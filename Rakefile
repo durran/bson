@@ -60,13 +60,13 @@ namespace :benchmark do
 
   task :ruby => :clean do
     puts "Benchmarking pure Ruby..."
-    load "bson.rb"
+    require "bson"
     benchmark!
   end
 
   task :c => :compile do
     puts "Benchmarking with C extensions..."
-    load "bson.rb"
+    require "bson"
     benchmark!
   end
 end

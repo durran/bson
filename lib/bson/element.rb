@@ -26,7 +26,8 @@ module BSON
     #
     # @since 2.0.0
     def initialize(field, value)
-      @field, @value = field, value
+      @field = field
+      @value = value
     end
 
     # Encode the element to its raw BSON bytes.
